@@ -1,0 +1,67 @@
+version: '3.8'
+
+services:
+  # 前端服务
+  frontend:
+    build: .
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - app-network
+    restart: unless-stopped
+
+  # 后端服务（预留配置）
+  backend:
+    # 当您有后端服务时，可以取消注释并配置
+    # build: ./backend
+    # ports:
+    #   - "3000:3000"
+    # environment:
+    #   - NODE_ENV=production
+    #   - DB_HOST=database
+    #   - DB_PORT=3306
+    #   - DB_NAME=medical_expert_db
+    #   - DB_USER=root
+    #   - DB_PASSWORD=your_password
+    # depends_on:
+    #   - database
+    # networks:
+    #   - app-network
+    # restart: unless-stopped
+    
+    # 临时使用nginx作为占位符
+    image: nginx:alpine
+    ports:
+      - "3000:80"
+    networks:
+      - app-network
+
+  # 数据库服务
+  database:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: medical_expert_2024
+      MYSQL_DATABASE: medical_expert_db
+      MYSQL_USER: app_user
+      MYSQL_PASSWORD: app_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./database.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - app-network
+    restart: unless-stopped
+    command: --default-authentication-plugin=mysql_native_password
+
+# 数据卷
+volumes:
+  db_data:
+    driver: local
+
+# 网络
+networks:
+  app-network:
+    driver: bridge

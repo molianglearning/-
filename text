@@ -1,0 +1,18 @@
+error.ts:14 
+ ElementPlusError: [el-radio] [API] label act as value is about to be deprecated in version 3.0.0, please use value instead.
+For more detail, please visit: https://element-plus.org/en-US/component/radio.html
+
+    at debugWarn (error.ts:13:37)
+    at watch.immediate (index.ts:6:7)
+    at useDeprecated (index.ts:4:3)
+error.ts:14 
+ ElementPlusError: [el-link] [API] The underline option (boolean) is about to be deprecated in version 3.0.0, please use 'always' | 'hover' | 'never' instead.
+For more detail, please visit: https://element-plus.org/en-US/component/link.html#underline
+
+    at debugWarn (error.ts:13:37)
+    at watch.immediate (index.ts:6:7)
+    at useDeprecated (index.ts:4:3)
+content.js:202 Download the React DevTools for a better development experience: https://reactjs.org/link/react-devtools
+gator.volces.com/list:1 
+ 
+ Failed to load resource: net::ERR_BLOCKED_BY_CLIENT
